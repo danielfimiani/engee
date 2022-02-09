@@ -23,8 +23,6 @@ export class VisitsFormComponent implements OnInit {
     this.visitForm.get("visitSector")?.valueChanges.subscribe(sector => {
       this.visitPersons = this._rrhhService.getPersonsBySector(sector)
     });
-    
-    this.change.detectChanges();
   }
 
   visitForm = new FormGroup({
@@ -40,10 +38,10 @@ export class VisitsFormComponent implements OnInit {
   visitPersons: IPerson[];
   visitHistory: IHistory[];
 
-  constructor(private change : ChangeDetectorRef,private _renaperService: RenaperserviceService, private _rrhhService: RrhhserviceService, private _historyService: HistoryserviceService) {
+  constructor(private _renaperService: RenaperserviceService, private _rrhhService: RrhhserviceService, private _historyService: HistoryserviceService) {
     this.visitName = '';
     this.visitDate = new Date();
-    this.visitHour = formatDate(new Date(),'HH:mm a','en');
+    this.visitHour = formatDate(new Date(),'HH:mm:ss a','en');
     this.visistSectors = _rrhhService.getSectors();
     this.visitPersons = [];
     this.visitHistory = [];
@@ -64,8 +62,8 @@ export class VisitsFormComponent implements OnInit {
     let person = this.visitForm.get('visitPerson')?.value;
     let dni = this.visitForm.get('visitDni')?.value;
 
-    let item = {date: this.visitDate , hour : this.visitHour , visits : person.name + ' ' + person.lastname , dni : dni.toString()};
-    this.visitHistory = [...this.visitHistory , item]
+    let item = {date: this.visitDate , hour : this.visitHour , visits : person.name + ' ' + person.lastName , dni : dni.toString()};
+    this.visitHistory = [...this.visitHistory , item];
     this.visitHistory = this.visitHistory.sort((a,b) => { return new Date(b.date).getTime() - new Date(a.date).getTime()});
   }
 }

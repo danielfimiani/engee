@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 
 //Interfaces
 import { IHistory } from './interfaces/IHistory';
@@ -19,15 +19,12 @@ export class HistoryViewComponent implements AfterViewInit, OnInit{
   dataSource = new MatTableDataSource<IHistory>(this.history);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private change : ChangeDetectorRef){}
-
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<IHistory>(this.history);
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
-    this.change.detectChanges();
   }
 
   deleteDialog(history : IHistory){
@@ -35,5 +32,10 @@ export class HistoryViewComponent implements AfterViewInit, OnInit{
       this.history = this.history.filter(h=>h!=history);
     
     this.dataSource.data= this.history;
+  }
+
+  ngOnChanges() {
+    this.dataSource = new MatTableDataSource<IHistory>(this.history);
+    this.dataSource.paginator = this.paginator;
   }
 }
