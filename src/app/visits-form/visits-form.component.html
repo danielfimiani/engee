@@ -1,0 +1,71 @@
+<mat-toolbar>
+  <span>Datos de la visita</span>
+</mat-toolbar>
+
+<form [formGroup]="visitForm">
+
+  <div class="form-control-button">
+    <label for="dni">DNI</label>
+    <mat-form-field appearance="outline">
+      <input name="dni" id="dni" type="number" matInput formControlName="visitDni">
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" (click)="getPerson()">Consultar</button>
+  </div>
+
+  <div class="form-data">
+    <h2>Nombre y apellido</h2>
+    <p>{{visitName}}</p>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="form-control">
+    <label for="dni">Nro. Tarjeta Ingreso</label>
+    <mat-form-field appearance="outline">
+      <input name="dni" id="dni" type="number" matInput>
+    </mat-form-field>
+  </div>
+
+  <div class="form-control form-control-time">
+    <div class="form-data">
+      <h2>Fecha Ingreso</h2>
+      <p>{{visitDate | date:'yyyy-MM-dd' }}</p>
+    </div>
+    
+    <div class="form-data" style="margin-left: 20px;">
+      <h2>Hora Ingreso</h2>
+      <p>{{visitHour}}</p>
+    </div>
+  </div>
+
+
+  <div class="form-control">
+    <label for="dni">Sector</label>
+    <mat-form-field appearance="fill">
+      <mat-label>Eliga una opcion.</mat-label>
+      <mat-select formControlName="visitSector">
+        <mat-option *ngFor="let sector of visistSectors" [value]="sector">
+          {{sector}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-control">
+    <label for="dni">Visita a</label>
+    <mat-form-field appearance="fill">
+      <mat-label>Eliga una opcion.</mat-label>
+      <mat-select required formControlName="visitPerson">
+        <mat-option *ngFor="let person of visitPersons" [value]="person">
+          {{person.name + ' ' + person.lastName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="accent" (click)="logVisit()">Ingresar</button>
+
+</form>
+
+<app-history-view *ngIf="visitHistory.length > 0" [history]="visitHistory"></app-history-view>

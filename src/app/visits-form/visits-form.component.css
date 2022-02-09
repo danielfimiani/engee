@@ -1,0 +1,99 @@
+button{
+    margin-top: 0;
+    margin-left: 10px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    justify-content: space-between;
+}
+
+.form-control{
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 80px;
+    align-items: center;
+}
+
+.form-control-button{
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 80px;
+    align-items: center;
+}
+
+.form-data p {
+    font-size: medium;
+}
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
+    background-color: #ffd740;
+}
+
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
+    color: #000000de;
+}
+
+label {
+    width: 100%;
+    font-size: large;
+}
+
+.mat-form-field{
+    width: 80%;
+}
+
+@media screen and (max-width: 1080px) {
+    .mat-toolbar span{
+        margin: auto;
+    }
+    form{
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+    }
+    
+    .form-control, .form-control-button{
+        width: 91%;
+    }
+
+    .form-control-button{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        height: initial;
+    }
+    .form-control-button label{
+        width: initial;
+        width: 100%;
+    }
+
+    .form-control-button .mat-form-field {
+        width: 60%;
+    }
+
+    .form-control .mat-form-field {
+        width: 100%;
+    }
+
+    .form-control-button button{
+        width: 30%;
+        height: 100%;
+    }
+
+    .form-control-time{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .form-control-time .form-data{
+        width: 45%;
+        margin-bottom: 10px;
+    }
+}
